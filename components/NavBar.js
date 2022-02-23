@@ -10,10 +10,10 @@ function NavBar() {
             <Link href="/">Home</Link>
           </div>
           <div className="mr-5 hover:text-gray-900">
-            <Link href="/">Services</Link>
+            <Link href="/#services">Services</Link>
           </div>
           <div className="mr-5 hover:text-gray-900">
-            <Link href="/">About</Link>
+            <Link href="/#hero">About</Link>
           </div>
         </nav>
         <div className="flex order-first lg:order-none lg:w-1/5 h-8 items-center text-gray-900 lg:items-center lg:justify-center">
@@ -35,6 +35,9 @@ function NavBar() {
           </button>
           <button className="inline-flex items-center font-semibold bg-yellow-400 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
             Sign Out
+          </button>
+          <button className="inline-flex items-center  border-0 py-1 px-3 focus:outline-none rounded text-sm mt-4 md:mt-0">
+            Log as constructor
           </button>
         </div>
       </div>

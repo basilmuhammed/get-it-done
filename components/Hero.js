@@ -2,13 +2,14 @@ import Image from "next/image";
 
 const Hero = () => {
   return (
-    <section className="text-gray-600 body-font">
+    <section className="text-gray-600 body-font" id="hero">
       <div className="container mx-auto flex flex-col px-5 py-24 justify-center items-center">
         <div className="relative w-[98vw] h-[60vh] mb-10 rounded overflow-hidden">
           <Image
             alt="hero"
             src="https://images.unsplash.com/photo-1591955506264-3f5a6834570a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
             layout="fill"
+            priority={1}
             objectFit="cover"
           />
         </div>
