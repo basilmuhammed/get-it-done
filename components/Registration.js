@@ -7,7 +7,7 @@ const Registration = () => {
     <section className="text-gray-600 body-font flex h-screen ">
       <div className="container px-5 py-24 mx-auto flex flex-wrap items-center">
         <div className="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0 items-start">
-          <div className="relative w-[50vw] h-[40vh] mb-5 left-0">
+          <div className="relative w-[50vw] h-[40vh] mb-5 left-0 md:block hidden">
             <Image
               src="/artwork.png"
               layout="fill"
