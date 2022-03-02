@@ -5,12 +5,14 @@ import { db } from "../firebaseConfig";
 
 const FormAdd = ({ isPanelOpen }) => {
   const [form, setForm] = useState({
-    name: "name",
-    availableFrom: "name",
-    experience: "name",
-    category: "name",
+    name: "",
+    availableFrom: "",
+    experience: "",
+    category: "",
     image: {},
-    about: "name",
+    about: "",
+    contactNo: "",
+    email: "",
   });
 
   const onSubmit = async (e) => {
@@ -31,7 +33,7 @@ const FormAdd = ({ isPanelOpen }) => {
   };
 
   return (
-    <div className="absolute z-30 w-3/6 h-[50rem] bg-white shadow-lg top-10 right-1/4 left-1/4 rounded-lg">
+    <div className="fixed z-30 w-3/6 h-[100vh] bg-white shadow-lg top-0 right-0 rounded-lg">
       <div className="flex flex-col justify-center items-center">
         <div className="pt-3">
           <h2 className="text-2xl font-semibold">
@@ -39,8 +41,8 @@ const FormAdd = ({ isPanelOpen }) => {
           </h2>
           <p className="text-sm text-center">fill the all field accordingly</p>
         </div>
-        <form className="w-2/3 my-5" onSubmit={onSubmit}>
-          <label className="block py-4">
+        <form className="w-2/3 my-2" onSubmit={onSubmit}>
+          <label className="block py-2">
             <span className="block text-sm font-medium text-slate-700">
               Name
             </span>
@@ -52,7 +54,31 @@ const FormAdd = ({ isPanelOpen }) => {
               className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
             />
           </label>
-          <label className="block py-4">
+          <label className="block py-2">
+            <span className="block text-sm font-medium text-slate-700">
+              Email
+            </span>
+            <input
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+            />
+          </label>
+          <label className="block py-2">
+            <span className="block text-sm font-medium text-slate-700">
+              Contact N0.
+            </span>
+            <input
+              type="number"
+              name="contactNo"
+              value={form.contactNo}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+            />
+          </label>
+          <label className="block py-2">
             <span className="block text-sm font-medium text-slate-700">
               Available from
             </span>
@@ -66,7 +92,7 @@ const FormAdd = ({ isPanelOpen }) => {
               className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
             />
           </label>
-          <label className="block py-4">
+          <label className="block py-2">
             <span className="block text-sm font-medium text-slate-700">
               Number of experience
             </span>
@@ -78,12 +104,12 @@ const FormAdd = ({ isPanelOpen }) => {
               className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
             />
           </label>
-          <div className="block py-4">
+          <div className="block py-2">
             <span className="block text-sm py-2 font-medium text-slate-700">
               Select Work Category
             </span>
             <select
-              className="form-select px-4 py-2 rounded-md w-full"
+              className="form-select px-2 py-2 rounded-md w-full"
               placeholder="select one"
               name="category"
               value={form.category}
@@ -100,7 +126,7 @@ const FormAdd = ({ isPanelOpen }) => {
               </option>
             </select>
           </div>
-          <label className="block py-4">
+          <label className="block py-2">
             <span className="block text-sm font-medium text-slate-700">
               About
             </span>
@@ -112,7 +138,7 @@ const FormAdd = ({ isPanelOpen }) => {
               className="mt-1 px-3 py-5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
             />
           </label>
-          <label className="block py-4">
+          <label className="block py-2">
             <span className="block text-sm font-medium text-slate-700">
               upload photo
             </span>
