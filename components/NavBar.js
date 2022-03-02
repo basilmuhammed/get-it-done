@@ -30,9 +30,9 @@ function NavBar() {
           </Link>
         </div>
         <div className="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
-          <Link href="/registration" passHref>
+          <Link href="/login" passHref>
             <button className="inline-flex items-center font-semibold border-yellow-400 border-2 bg-none py-1 px-3 mx-3 focus:outline-none hover:bg-yellow-400 rounded text-base mt-4 md:mt-0">
-              Sign In
+              Log In
             </button>
           </Link>
           {/* <button className="inline-flex items-center font-semibold bg-yellow-400 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">

@@ -8,7 +8,7 @@ const FormAdd = ({ isPanelOpen }) => {
     name: "",
     availableFrom: "",
     experience: "",
-    category: "",
+    category: "architect",
     image: {},
     about: "",
     contactNo: "",
@@ -19,17 +19,23 @@ const FormAdd = ({ isPanelOpen }) => {
     e.preventDefault();
     console.log(form);
     try {
-      const docRef = await addDoc(collection(db, "users"), {
-        first: "Alan",
-        middle: "Mathison",
-        last: "Turing",
-        born: 1912,
-      });
-
-      console.log("Document written with ID: ", docRef.id);
+      switch (form.category) {
+        case "architect":
+          await addDoc(collection(db, "architect"), form);
+          break;
+        case "mechanic":
+          await addDoc(collection(db, "mechanic"), form);
+          break;
+        case "plumber":
+          await addDoc(collection(db, "plumber"), form);
+          break;
+        default:
+          break;
+      }
     } catch (e) {
-      console.error("Error adding document: ", e);
+      console.log("Error adding document: ", e);
     }
+    isPanelOpen();
   };
 
   return (
@@ -62,7 +68,7 @@ const FormAdd = ({ isPanelOpen }) => {
               type="email"
               name="email"
               value={form.email}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
               className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
             />
           </label>
@@ -74,7 +80,7 @@ const FormAdd = ({ isPanelOpen }) => {
               type="number"
               name="contactNo"
               value={form.contactNo}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              onChange={(e) => setForm({ ...form, contactNo: e.target.value })}
               className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
             />
           </label>
@@ -115,13 +121,13 @@ const FormAdd = ({ isPanelOpen }) => {
               value={form.category}
               onChange={(e) => setForm({ ...form, category: e.target.value })}
             >
-              <option name="architect" id="architect">
+              <option name="architect" id="architect" value="architect">
                 Architect
               </option>
-              <option name="mechanic" id="mechanic">
+              <option name="mechanic" id="mechanic" value="mechanic">
                 Mechanic
               </option>
-              <option name="plumber" id="plumber">
+              <option name="plumber" id="plumber" value="plumber">
                 Plumber
               </option>
             </select>
