@@ -17,7 +17,7 @@ function architect() {
             vero, voluptatem ipsam non? Delectus?"
           src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1931&q=80"
         />
-        <div className="grid grid-cols-3 gap-20 mx-4">
+        <div className="grid grid-cols-4 gap-10 mx-4">
           <ContactCard />
           <ContactCard />
           <ContactCard />

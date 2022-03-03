@@ -1,7 +1,25 @@
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { getAuth, signOut } from "firebase/auth";
 
 function NavBar() {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  const [userDetails, setUserDetails] = useState(user);
+
+  const userSignOut = async () => {
+    // setUserDetails(null);
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        console.log("🚀 ~ ign-out successful.");
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  };
+
   return (
     <header className="text-gray-600 body-font">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
@@ -30,11 +48,30 @@ function NavBar() {
           </Link>
         </div>
         <div className="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
-          <Link href="/login" passHref>
-            <button className="inline-flex items-center font-semibold border-yellow-400 border-2 bg-none py-1 px-3 mx-3 focus:outline-none hover:bg-yellow-400 rounded text-base mt-4 md:mt-0">
-              Log In
-            </button>
-          </Link>
+          {userDetails ? (
+            <Link href="/login" passHref>
+              <div className="flex cursor-pointer" onClick={userSignOut}>
+                <a className="inline-flex items-center font-semibold py-1 px-3 mx-3 text-base mt-4 md:mt-0">
+                  {userDetails.email}
+                </a>
+                <div className="relative h-10 w-10 rounded-full overflow-hidden">
+                  <Image
+                    src="https://images.unsplash.com/placeholder-avatars/extra-large.jpg?dpr=1&auto=format&fit=crop&w=32&h=32&q=60&crop=faces&bg=fff"
+                    layout="fill"
+                    objectFit="cover"
+                    alt="profile"
+                  />
+                </div>
+              </div>
+            </Link>
+          ) : (
+            <Link href="/login" passHref>
+              <button className="inline-flex items-center font-semibold border-yellow-400 border-2 bg-none py-1 px-3 mx-3 focus:outline-none hover:bg-yellow-400 rounded text-base mt-4 md:mt-0">
+                Log In
+              </button>
+            </Link>
+          )}
+
           {/* <button className="inline-flex items-center font-semibold bg-yellow-400 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
             Sign Out
           </button> */}

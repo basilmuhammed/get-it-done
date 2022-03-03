@@ -22,15 +22,7 @@ const Registration = () => {
     createUserWithEmailAndPassword(auth, form.email, form.password)
       .then((userCredential) => {
         const user = userCredential.user;
-        try {
-          const docRef = addDoc(collection(db, "users"), {
-            ...form,
-            uid: user.uid,
-          });
-          console.log("Document written with ID: ", docRef);
-        } catch (e) {
-          console.error("Error adding document: ", e);
-        }
+        addUserToDb(user.uid);
         router.push("/");
       })
       .catch((error) => {
@@ -38,6 +30,19 @@ const Registration = () => {
         const errorMessage = error.message;
         setError(errorMessage);
       });
+  };
+
+  const addUserToDb = async (uid) => {
+    try {
+      const docRef = await addDoc(collection(db, "users"), {
+        ...form,
+        password: "*******************",
+        uid: uid,
+      });
+      console.log("Document written with ID: ", docRef);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
   };
 
   return (

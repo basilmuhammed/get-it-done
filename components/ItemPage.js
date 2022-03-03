@@ -1,12 +1,36 @@
-import Image from "next/image";
 import React, { useState } from "react";
+import { getAuth } from "firebase/auth";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import Image from "next/image";
 import FormAdd from "./FormAdd";
+import { db } from "../firebaseConfig";
 
 const ItemPage = (props) => {
+  const getUserAuth = async (uid) => {
+    const usersRef = collection(db, "users");
+    const q = query(usersRef, where("uid", "==", uid));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      if (doc.data().constructor === true) {
+        return true;
+      }
+    });
+
+    return false;
+  };
+
   const [panelOpen, setPanelOpen] = useState(false);
   const isPanelOpen = () => {
     setPanelOpen(!panelOpen);
   };
+
+  const auth = getAuth();
+  const user = auth.currentUser;
+  let userInfo = null;
+  if (user) {
+    userInfo = getUserAuth(user.uid);
+    console.log("🚀 ~ userInfo", Promise.toString(userInfo));
+  }
 
   return (
     <>
@@ -30,12 +54,14 @@ const ItemPage = (props) => {
           <p className="leading-relaxed w-2/3">{props.desc}</p>
         </div>
         <div className="flex items-center justify-center mb-16 ">
-          <button
-            onClick={isPanelOpen}
-            className="inline-flex text-black bg-yellow-400 border-0 py-1 px-5 focus:outline-none hover:bg-gray-200 rounded text-md font-semibold"
-          >
-            Add Workers
-          </button>
+          {userInfo && (
+            <button
+              onClick={isPanelOpen}
+              className="inline-flex text-black bg-yellow-400 border-0 py-1 px-5 focus:outline-none hover:bg-gray-200 rounded text-md font-semibold"
+            >
+              Add Workers
+            </button>
+          )}
         </div>
       </div>
     </>
