@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
+import { getAuth } from "firebase/auth";
 
 const FormAdd = ({ isPanelOpen }) => {
+  const auth = getAuth();
+  const user = auth.currentUser;
+
   const [form, setForm] = useState({
     name: "",
     availableFrom: "",
@@ -12,6 +16,8 @@ const FormAdd = ({ isPanelOpen }) => {
     about: "",
     contactNo: "",
     email: "",
+    id: Date.now(),
+    addedBy: user.email,
   });
 
   const onSubmit = async (e) => {
