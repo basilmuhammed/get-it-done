@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useMemo } from "react";
 import NavBar from "../../components/NavBar";
 import { PhoneMissedCallIcon, MailIcon } from "@heroicons/react/outline";
 import ContactCard from "../../components/ContactCard";
 import ItemPage from "../../components/ItemPage";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebaseConfig";
 
 function architect() {
+  const querySnapshot = getDocs(collection(db, "architect")).forEach((doc) => {
+    console.log(`${doc.id} => ${doc.data()}`);
+  });
+  console.log("🚀 ~ querySnapshot", querySnapshot);
+
   return (
     <>
       <NavBar />

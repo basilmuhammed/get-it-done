@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { getAuth } from "firebase/auth";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import Image from "next/image";
@@ -6,19 +6,6 @@ import FormAdd from "./FormAdd";
 import { db } from "../firebaseConfig";
 
 const ItemPage = (props) => {
-  const getUserAuth = async (uid) => {
-    const usersRef = collection(db, "users");
-    const q = query(usersRef, where("uid", "==", uid));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      if (doc.data().constructor === true) {
-        return true;
-      }
-    });
-
-    return false;
-  };
-
   const [panelOpen, setPanelOpen] = useState(false);
   const isPanelOpen = () => {
     setPanelOpen(!panelOpen);
@@ -26,10 +13,23 @@ const ItemPage = (props) => {
 
   const auth = getAuth();
   const user = auth.currentUser;
-  let userInfo = null;
+
+  const getUserAuth = useCallback(async (uid) => {
+    const usersRef = collection(db, "users");
+    const q = query(usersRef, where("uid", "==", uid));
+    const querySnapshot = await getDocs(q);
+    let user;
+    querySnapshot.forEach((doc) => {
+      if (doc.data().constructor === true) {
+        user = true;
+      }
+    });
+    return user;
+  }, []);
+
+  const [userInfo, setUserInfo] = useState();
   if (user) {
-    userInfo = getUserAuth(user.uid);
-    console.log("🚀 ~ userInfo", Promise.toString(userInfo));
+    getUserAuth(user.uid).then((val) => setUserInfo(val));
   }
 
   return (
