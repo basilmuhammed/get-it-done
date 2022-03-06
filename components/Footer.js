@@ -20,12 +20,6 @@ function Footer() {
           <a className="text-gray-500">
             <ChipIcon className="h-6 w-6" />
           </a>
-          <a className="text-gray-500">
-            <ChipIcon className="h-6 w-6" />
-          </a>
-          <a className="text-gray-500">
-            <ChipIcon className="h-6 w-6" />
-          </a>
         </span>
       </div>
     </footer>

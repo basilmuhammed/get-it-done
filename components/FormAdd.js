@@ -22,7 +22,6 @@ const FormAdd = ({ isPanelOpen }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(form);
     try {
       switch (form.category) {
         case "architect":
@@ -44,7 +43,7 @@ const FormAdd = ({ isPanelOpen }) => {
   };
 
   return (
-    <div className="fixed z-30 w-3/6 h-[100vh] bg-white shadow-lg top-0 right-0 rounded-lg">
+    <div className="fixed z-30 w-3/6 h-full overflow-auto bg-white shadow-lg top-0 right-0 rounded-lg">
       <div className="flex flex-col justify-center items-center">
         <div className="pt-3">
           <h2 className="text-2xl font-semibold">
@@ -169,7 +168,7 @@ const FormAdd = ({ isPanelOpen }) => {
             type="submit"
             className="inline-flex text-black bg-yellow-400 border-0 py-1 mt-6 px-5 focus:outline-none hover:bg-gray-200 rounded text-md font-medium mr-5"
           >
-            Save{" "}
+            Save
           </button>
           <button
             onClick={isPanelOpen}

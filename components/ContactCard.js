@@ -1,4 +1,3 @@
-import { MailIcon, PhoneMissedCallIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -38,12 +37,10 @@ const ContactCard = ({ data }) => {
         <p className="text-gray-400 italic text-xs pb-2">
           added on {new Date(data.id).toString()}
         </p>
+        <p className="text-gray-400 italic text-xs pb-2">
+          Available from on {data.availableFrom}
+        </p>
         <p className="text-sm">{data.about}</p>
-        {/* <div className="mt-3 text-yellow-500 inline-flex items-end">
-          <button className="inline-flex text-black border-2 border-yellow-400  py-1 px-5 focus:outline-none hover:bg-gray-200 rounded text-sm font-medium">
-            Contact
-          </button>
-        </div> */}
       </div>
     </div>
   );

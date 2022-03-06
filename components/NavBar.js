@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { BellIcon } from "@heroicons/react/outline";
 import { getAuth, signOut } from "firebase/auth";
 
 function NavBar() {
@@ -22,7 +23,7 @@ function NavBar() {
 
   return (
     <header className="text-gray-600 body-font">
-      <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-center">
         <nav className="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
           <div className="mr-5 hover:text-gray-900">
             <Link href="/">Home</Link>
@@ -47,7 +48,7 @@ function NavBar() {
             </a>
           </Link>
         </div>
-        <div className="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
+        <div className="lg:w-2/5 flex justify-center items-center lg:justify-end ml-5 lg:ml-0">
           {userDetails ? (
             <Link href="/login" passHref>
               <div className="flex cursor-pointer" onClick={userSignOut}>
@@ -72,12 +73,7 @@ function NavBar() {
             </Link>
           )}
 
-          {/* <button className="inline-flex items-center font-semibold bg-yellow-400 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
-            Sign Out
-          </button> */}
-          {/* <button className="inline-flex items-center  border-0 py-1 px-3 focus:outline-none rounded text-sm mt-4 md:mt-0">
-            Log as constructor
-          </button> */}
+          <BellIcon className="h-6 w-6 text-center ml-4" />
         </div>
       </div>
     </header>

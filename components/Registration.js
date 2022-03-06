@@ -69,7 +69,11 @@ const Registration = () => {
           <h2 className="text-gray-900 text-lg font-medium title-font mb-5">
             Sign Up
           </h2>
-          {error && <p className="text-sm text-red-500">{error}</p>}
+          {error && (
+            <p className="text-sm text-red-500">
+              {error.match(/\(.*?\)/gm)[0]}
+            </p>
+          )}
           <div className="relative mb-4">
             <label className="leading-7 text-sm text-gray-600">Full Name</label>
             <input
