@@ -72,8 +72,70 @@ function NavBar() {
               </button>
             </Link>
           )}
-
-          <BellIcon className="h-6 w-6 text-center ml-4" />
+          {/* <div
+            href="#"
+            className="group relative transition-all duration-500 ease-in-out delay-300"
+          > */}
+          {/* <details className="details">
+              <summary>
+                <BellIcon className="h-6 w-6 text-center ml-4 group-open" />
+                </summary>
+                <div className="hidden group-open:flex flex-col transition-all duration-500 ease-in-out delay-300 group-hover:scale-115 absolute top-8 right-0 h-[50vh] w-[25vw] rounded-3xl z-10 shadow-lg bg-white overflow-auto p-5 ">
+                <div className="mb-3 hover:bg-yellow-400 hover:font-medium hover:text-black rounded-md p-3 shadow-md">
+                  <p className="text-align-left text-sm">sample text</p>
+                </div>
+                <div className="mb-3 hover:bg-yellow-400 hover:font-medium hover:text-black rounded-md p-3 shadow-md">
+                  <p className="text-align-left text-sm">sample text</p>
+                </div>
+                <div className="mb-3 hover:bg-yellow-400 hover:font-medium hover:text-black rounded-md p-3 shadow-md">
+                  <p className="text-align-left text-sm">
+                    sample text Lorem ipsum dolor sit amet consectetur
+                    adipisicing elit. Soluta labore nesciunt sint, alias minus
+                    aspernatur nostrum dignissimos a veritatis fugiat explicabo
+                    vero iste eveniet iure. Veritatis dolorum officiis fugiat
+                    quisquam?
+                  </p>
+                </div>
+              </div>
+            </details> */}
+          {/* </div> */}
+          <div classNames="relative">
+            <details
+              className="open:bg-white open:absolute open:rounded-lg open:top-20 open:z-10 open:right-10 open:ring-1 open:ring-black/5 flex"
+              close
+            >
+              <summary className="leading-6 flex select-none">
+                <BellIcon className="h-6 w-6 m-4 text-center ml-4 group-open text-black" />
+              </summary>
+              <div className="mt-1 text-sm leading-6 p-6 w-[25vw] h-[40vh] overflow-auto">
+                <p className="mb-3">click on the bell icon to close</p>
+                <div className="mb-3 bg-yellow-50 hover:font-medium hover:text-black py-4 rounded-md p-2 shadow-sm">
+                  <p className="text-align-left text-sm">sample text</p>
+                </div>
+                <div className="mb-3 bg-yellow-50 hover:font-medium hover:text-black py-4 rounded-md p-2 shadow-sm">
+                  <p className="text-align-left text-sm">sample text</p>
+                </div>
+                <div className="mb-3 bg-yellow-50 hover:font-medium hover:text-black py-4 rounded-md p-2 shadow-sm">
+                  <p className="text-align-left text-sm">sample text</p>
+                </div>
+                <div className="mb-3 bg-yellow-50 hover:font-medium hover:text-black py-4 rounded-md p-2 shadow-sm">
+                  <p className="text-align-left text-sm">sample text</p>
+                </div>
+                <div className="mb-3 bg-yellow-50 hover:font-medium hover:text-black py-4 rounded-md p-2 shadow-sm">
+                  <p className="text-align-left text-sm">sample text</p>
+                </div>
+                <div className="mb-3 bg-yellow-50 hover:font-medium hover:text-black py-4 rounded-md p-2 shadow-sm">
+                  <p className="text-align-left text-sm">sample text</p>
+                </div>
+                <div className="mb-3 bg-yellow-50 hover:font-medium hover:text-black py-4 rounded-md p-2 shadow-sm">
+                  <p className="text-align-left text-sm">sample text</p>
+                </div>
+                <div className="mb-3 bg-yellow-50 hover:font-medium hover:text-black py-4 rounded-md p-2 shadow-sm">
+                  <p className="text-align-left text-sm">sample text</p>
+                </div>
+              </div>
+            </details>
+          </div>
         </div>
       </div>
     </header>
