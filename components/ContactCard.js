@@ -1,48 +1,55 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import moment from "moment";
 
 const ContactCard = ({ data }) => {
   return (
-    <div className="flex items-center w-11/12 mx-auto border-b pb-10 mb-10 p-8 rounded-lg shadow-md flex-col">
-      <div className="sm:w-36 sm:h-36 h-20 w-full flex rounded-xl justify-start bg-indigo-100 mb-3 text-indigo-500 flex-shrink-0 overflow-hidden">
-        <div className="relative h-full w-full">
-          <Image
-            src="https://images.unsplash.com/placeholder-avatars/extra-large.jpg?dpr=1&auto=format&fit=crop&w=32&h=32&q=60&crop=faces&bg=fff"
-            layout="fill"
-            objectFit="cover"
-            alt="profile"
-          />
+    <figure className="md:flex bg-slate-100 rounded-xl p-8 md:p-0 overflow-hidden">
+      <span className="w-[25%] h-[25%] md:w-[30%] md:h-auto md:rounded-none rounded-full mx-auto md:mx-0 relative bg-red-400">
+        <Image
+          className="absolute"
+          src="https://images.unsplash.com/photo-1531891437562-4301cf35b7e4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDl8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+          alt=""
+          layout="fill"
+          objectFit="cover"
+        />
+      </span>
+      <div className="pt-6 md:p-5 text-center md:text-left space-y-4 md:w-[80%]">
+        <figcaption className="font-medium">
+          <div className="text-sky-500  text-xl">
+            {data.name.toUpperCase() || "-"}
+          </div>
+          <div className="text-slate-700 dark:text-slate-500 text-sm">
+            {data.email || "-"}
+          </div>
+          <div className="text-slate-700 dark:text-slate-500 text-sm">
+            {data.contactNo || "-"}
+          </div>
+        </figcaption>
+        <blockquote className="w-full">
+          <p className="text-sm font-medium max-h-[50px] whitespace-normal break-all overflow-auto">
+            {data.about ||
+              "!Oops there is no about details added for this user"}
+          </p>
+          <p className="text-xs font-semibold">
+            Have {data.experience} year experience in this field
+          </p>
+
+          <p className="text-xs font-semibold">
+            Available from on {data.availableFrom}
+          </p>
+        </blockquote>
+        <div className="">
+          <button className="p-2 border-2 rounded-md text-white text-sm flex-end bg-slate-800">
+            Request for Service
+          </button>
+          <p className="text-xs font-mono text-right">
+            added on {moment(data.id).format("MMM Do YYYY")}
+          </p>
         </div>
       </div>
-      <h2 className="text-gray-900 text-lg title-font font-medium">
-        {data.name}
-      </h2>
-      <div className="flex">
-        <Link href={`mailto:trail@trail.com`} passHref className="pr-3">
-          <p className="text-gray-600 text-sm cursor-pointer hover:text-yellow-500 mr-3">
-            {data.email}
-          </p>
-        </Link>
-        <Link href={`tel:123`} passHref>
-          <p className="text-gray-600 text-sm pb-2 cursor-pointer hover:text-yellow-500">
-            +91{data.contactNo}
-          </p>
-        </Link>
-      </div>
-      <div className="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-        <p className="text-gray-700 inline-flex text-sm">
-          {data.experience} year experienced
-        </p>
-        <p className="text-gray-400 italic text-xs pb-2">
-          added on {new Date(data.id).toString()}
-        </p>
-        <p className="text-gray-400 italic text-xs pb-2">
-          Available from on {data.availableFrom}
-        </p>
-        <p className="text-sm">{data.about}</p>
-      </div>
-    </div>
+    </figure>
   );
 };
 

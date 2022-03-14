@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import { getAuth } from "firebase/auth";
+import { useRouter } from "next/router";
 
 const FormAdd = ({ isPanelOpen }) => {
   const auth = getAuth();
   const user = auth.currentUser;
+  const router = useRouter();
 
   const [form, setForm] = useState({
     name: "",
@@ -26,12 +28,15 @@ const FormAdd = ({ isPanelOpen }) => {
       switch (form.category) {
         case "architect":
           await addDoc(collection(db, "architect"), form);
+          router.push("/options/architect");
           break;
         case "mechanic":
           await addDoc(collection(db, "mechanic"), form);
+          router.push("/options/mechanic");
           break;
         case "plumber":
           await addDoc(collection(db, "plumber"), form);
+          router.push("/options/plumber");
           break;
         default:
           break;
@@ -60,6 +65,7 @@ const FormAdd = ({ isPanelOpen }) => {
               type="text"
               name="name"
               value={form.name}
+              required
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
             />
@@ -72,18 +78,22 @@ const FormAdd = ({ isPanelOpen }) => {
               type="email"
               name="email"
               value={form.email}
+              required
               onChange={(e) => setForm({ ...form, email: e.target.value })}
               className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
             />
           </label>
           <label className="block py-2">
             <span className="block text-sm font-medium text-slate-700">
-              Contact N0.
+              Contact No.
             </span>
             <input
               type="number"
               name="contactNo"
+              min={1000000000}
+              max={99999999999}
               value={form.contactNo}
+              required
               onChange={(e) => setForm({ ...form, contactNo: e.target.value })}
               className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
             />
@@ -96,6 +106,7 @@ const FormAdd = ({ isPanelOpen }) => {
               type="date"
               name="availableFrom"
               value={form.availableFrom}
+              required
               onChange={(e) =>
                 setForm({ ...form, availableFrom: e.target.value })
               }
@@ -110,6 +121,8 @@ const FormAdd = ({ isPanelOpen }) => {
               type="number"
               name="experience"
               value={form.experience}
+              max={50}
+              required
               onChange={(e) => setForm({ ...form, experience: e.target.value })}
               className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
             />

@@ -50,21 +50,32 @@ function NavBar() {
         </div>
         <div className="lg:w-2/5 flex justify-center items-center lg:justify-end ml-5 lg:ml-0">
           {userDetails ? (
-            <Link href="/login" passHref>
-              <div className="flex cursor-pointer" onClick={userSignOut}>
-                <a className="inline-flex items-center font-semibold py-1 px-3 mx-3 text-base mt-4 md:mt-0">
-                  {userDetails.email}
-                </a>
-                <div className="relative h-10 w-10 rounded-full overflow-hidden">
-                  <Image
-                    src="https://images.unsplash.com/placeholder-avatars/extra-large.jpg?dpr=1&auto=format&fit=crop&w=32&h=32&q=60&crop=faces&bg=fff"
-                    layout="fill"
-                    objectFit="cover"
-                    alt="profile"
-                  />
-                </div>
+            <div className="flex cursor-pointer group relative">
+              <a className="inline-flex items-center font-semibold py-1 px-3 mx-3 text-base mt-4 md:mt-0">
+                {userDetails.email}
+              </a>
+              <div className="relative h-10 w-10 rounded-full overflow-hidden">
+                <Image
+                  src="https://images.unsplash.com/placeholder-avatars/extra-large.jpg?dpr=1&auto=format&fit=crop&w=32&h=32&q=60&crop=faces&bg=fff"
+                  layout="fill"
+                  objectFit="cover"
+                  alt="profile"
+                />
               </div>
-            </Link>
+              <div className="group-hover:flex flex-col hidden bg-white shadow-lg absolute top-10 right-0 w-36 h-36 rounded-md p-4 z-20">
+                <div className="mt-4 p-2 font-semibold hover:bg-yellow-500 hover:text-slate-800 rounded-md">
+                  Account
+                </div>
+                <Link href="/login" passHref>
+                  <div
+                    className="p-2 font-semibold hover:bg-yellow-500 hover:text-slate-800 rounded-md"
+                    onClick={userSignOut}
+                  >
+                    Log Out
+                  </div>
+                </Link>
+              </div>
+            </div>
           ) : (
             <Link href="/login" passHref>
               <button className="inline-flex items-center font-semibold border-yellow-400 border-2 bg-none py-1 px-3 mx-3 focus:outline-none hover:bg-yellow-400 rounded text-base mt-4 md:mt-0">
@@ -72,33 +83,6 @@ function NavBar() {
               </button>
             </Link>
           )}
-          {/* <div
-            href="#"
-            className="group relative transition-all duration-500 ease-in-out delay-300"
-          > */}
-          {/* <details className="details">
-              <summary>
-                <BellIcon className="h-6 w-6 text-center ml-4 group-open" />
-                </summary>
-                <div className="hidden group-open:flex flex-col transition-all duration-500 ease-in-out delay-300 group-hover:scale-115 absolute top-8 right-0 h-[50vh] w-[25vw] rounded-3xl z-10 shadow-lg bg-white overflow-auto p-5 ">
-                <div className="mb-3 hover:bg-yellow-400 hover:font-medium hover:text-black rounded-md p-3 shadow-md">
-                  <p className="text-align-left text-sm">sample text</p>
-                </div>
-                <div className="mb-3 hover:bg-yellow-400 hover:font-medium hover:text-black rounded-md p-3 shadow-md">
-                  <p className="text-align-left text-sm">sample text</p>
-                </div>
-                <div className="mb-3 hover:bg-yellow-400 hover:font-medium hover:text-black rounded-md p-3 shadow-md">
-                  <p className="text-align-left text-sm">
-                    sample text Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Soluta labore nesciunt sint, alias minus
-                    aspernatur nostrum dignissimos a veritatis fugiat explicabo
-                    vero iste eveniet iure. Veritatis dolorum officiis fugiat
-                    quisquam?
-                  </p>
-                </div>
-              </div>
-            </details> */}
-          {/* </div> */}
           <div classNames="relative">
             <details
               className="open:bg-white open:absolute open:rounded-lg open:top-20 open:z-10 open:right-10 open:ring-1 open:ring-black/5 flex"
@@ -109,21 +93,6 @@ function NavBar() {
               </summary>
               <div className="mt-1 text-sm leading-6 p-6 w-[25vw] h-[40vh] overflow-auto">
                 <p className="mb-3">click on the bell icon to close</p>
-                <div className="mb-3 bg-yellow-50 hover:font-medium hover:text-black py-4 rounded-md p-2 shadow-sm">
-                  <p className="text-align-left text-sm">sample text</p>
-                </div>
-                <div className="mb-3 bg-yellow-50 hover:font-medium hover:text-black py-4 rounded-md p-2 shadow-sm">
-                  <p className="text-align-left text-sm">sample text</p>
-                </div>
-                <div className="mb-3 bg-yellow-50 hover:font-medium hover:text-black py-4 rounded-md p-2 shadow-sm">
-                  <p className="text-align-left text-sm">sample text</p>
-                </div>
-                <div className="mb-3 bg-yellow-50 hover:font-medium hover:text-black py-4 rounded-md p-2 shadow-sm">
-                  <p className="text-align-left text-sm">sample text</p>
-                </div>
-                <div className="mb-3 bg-yellow-50 hover:font-medium hover:text-black py-4 rounded-md p-2 shadow-sm">
-                  <p className="text-align-left text-sm">sample text</p>
-                </div>
                 <div className="mb-3 bg-yellow-50 hover:font-medium hover:text-black py-4 rounded-md p-2 shadow-sm">
                   <p className="text-align-left text-sm">sample text</p>
                 </div>
