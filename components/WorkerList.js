@@ -53,7 +53,7 @@ const WorkerList = (props) => {
           workers.map((data) => {
             return (
               <ContactCard
-                key={data && data.id}
+                key={data && data.docId}
                 data={data}
                 onDelete={onDelete}
               />

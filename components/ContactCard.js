@@ -1,19 +1,34 @@
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import moment from "moment";
 import { getAuth } from "firebase/auth";
-import { deleteDoc, doc, query, where } from "firebase/firestore";
-import { db } from "../firebaseConfig";
+import { getDatabase, ref, set } from "firebase/database";
 
 const ContactCard = ({ data, onDelete }) => {
   const auth = getAuth();
   const user = auth.currentUser;
 
+  const [requested, setRequested] = useState(false);
+
   const onDeleteClick = useCallback(async () => {
     onDelete(data.workerData.category, data.docId);
-  }, [db]);
+  }, []);
+
+  const onRequestService = useCallback(async () => {
+    const db = getDatabase();
+    set(
+      ref(
+        db,
+        `notification/${data.workerData.addedById}/` + data.workerData.id
+      ),
+      {
+        workerMail: data.workerData.name,
+        workerName: data.workerData.email,
+        message: `${user.email} wants to Request the ${data.workerData.name} - ${data.workerData.email} for their ${data.workerData.category} work please respond to them`,
+      }
+    ).then(() => setRequested(true));
+  }, []);
 
   return (
     <figure className="md:flex bg-slate-100 rounded-xl p-8 md:p-0 overflow-hidden">
@@ -52,9 +67,21 @@ const ContactCard = ({ data, onDelete }) => {
           </p>
         </blockquote>
         <div className="">
-          <button className="p-2 border-2 rounded-md text-white text-xs flex-end bg-slate-800">
-            Request for Service
-          </button>
+          {requested ? (
+            <button
+              className="p-2 border-2 rounded-md text-slate-800 text-xs flex-end bg-slate-300"
+              disabled
+            >
+              Requested
+            </button>
+          ) : (
+            <button
+              className="p-2 border-2 rounded-md text-white text-xs flex-end bg-slate-800 "
+              onClick={onRequestService}
+            >
+              Request for Service
+            </button>
+          )}
           {user && user.email == data.workerData.addedBy && (
             <button
               className="p-2 border-2 rounded-md text-white text-xs flex-end bg-slate-800"

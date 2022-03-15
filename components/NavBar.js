@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { BellIcon } from "@heroicons/react/outline";
+import { BellIcon, CheckIcon } from "@heroicons/react/outline";
 import { getAuth, signOut } from "firebase/auth";
+import { getDatabase, ref, child, get } from "firebase/database";
 
 function NavBar() {
   const auth = getAuth();
   const user = auth.currentUser;
-  const [userDetails, setUserDetails] = useState(user);
 
   const userSignOut = async () => {
     // setUserDetails(null);
@@ -19,6 +19,25 @@ function NavBar() {
         // An error happened.
       });
   };
+
+  const getNotifications = useMemo(async () => {
+    const snapArr = [];
+    const dbRef = ref(getDatabase());
+    const snap = await get(child(dbRef, `notification/${user && user.uid}`));
+    if (snap.exists()) {
+      snap.forEach((data) => {
+        snapArr.push(data.val());
+      });
+    }
+    return snapArr;
+  }, []);
+
+  if (user) {
+    getNotifications.then((data) => {
+      setNotifications(data);
+    });
+  }
+  const [notifications, setNotifications] = useState();
 
   return (
     <header className="text-gray-600 body-font">
@@ -48,10 +67,10 @@ function NavBar() {
           </Link>
         </div>
         <div className="lg:w-2/5 flex justify-center items-center lg:justify-end ml-5 lg:ml-0">
-          {userDetails ? (
+          {user ? (
             <div className="flex cursor-pointer group relative">
               <a className="inline-flex items-center font-semibold py-1 px-3 mx-3 text-base mt-4 md:mt-0">
-                {userDetails.email}
+                {user.email}
               </a>
               <div className="relative h-10 w-10 rounded-full overflow-hidden">
                 <Image
@@ -82,25 +101,29 @@ function NavBar() {
               </button>
             </Link>
           )}
-          <div classNames="relative">
+          <div className="relative">
             <details
-              className="open:bg-white open:absolute open:rounded-lg open:top-20 open:z-10 open:right-10 open:ring-1 open:ring-black/5 flex"
-              close
+              className="open:bg-slate-800 open:absolute open:rounded-lg open:top-20 open:z-10 open:right-10 open:ring-1 open:ring-black/5 flex"
+              close="true"
             >
               <summary className="leading-6 flex select-none">
-                <BellIcon className="h-6 w-6 m-4 text-center ml-4 group-open text-black" />
+                <BellIcon className="h-6 w-6 m-4 text-center ml-4 group-open text-yellow-500 animate-bounce" />
               </summary>
-              <div className="mt-1 text-sm leading-6 p-6 w-[25vw] h-[40vh] overflow-auto">
-                <p className="mb-3">click on the bell icon to close</p>
-                <div className="mb-3 bg-yellow-50 hover:font-medium hover:text-black py-4 rounded-md p-2 shadow-sm">
-                  <p className="text-align-left text-sm">sample text</p>
-                </div>
-                <div className="mb-3 bg-yellow-50 hover:font-medium hover:text-black py-4 rounded-md p-2 shadow-sm">
-                  <p className="text-align-left text-sm">sample text</p>
-                </div>
-                <div className="mb-3 bg-yellow-50 hover:font-medium hover:text-black py-4 rounded-md p-2 shadow-sm">
-                  <p className="text-align-left text-sm">sample text</p>
-                </div>
+              <div className="mt-1 text-xs leading-6 p-6 w-[25vw] max-h-[60vh] overflow-auto">
+                <p className="mb-3 text-white">
+                  click on the bell icon to close
+                </p>
+                {notifications.map((data) => (
+                  <div
+                    className="mb-3 flex justify-between bg-yellow-50 hover:font-medium py-4 rounded-md p-2 shadow-sm"
+                    key={data.message}
+                  >
+                    <p className="text-align-left text-sm fel">
+                      {data.message}
+                    </p>
+                    <CheckIcon className="h-8 w-8 animate-pulse" />
+                  </div>
+                ))}
               </div>
             </details>
           </div>

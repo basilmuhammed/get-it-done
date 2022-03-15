@@ -20,6 +20,7 @@ const FormAdd = ({ isPanelOpen }) => {
     email: "",
     id: Date.now(),
     addedBy: user.email,
+    addedById: user.uid,
   });
 
   const onSubmit = async (e) => {
