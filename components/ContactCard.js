@@ -13,7 +13,7 @@ const ContactCard = ({ data, onDelete }) => {
 
   const onDeleteClick = useCallback(async () => {
     onDelete(data.workerData.category, data.docId);
-  }, []);
+  }, [onDelete, data.docId, data.workerData.category]);
 
   const onRequestService = useCallback(async () => {
     const db = getDatabase();
@@ -28,7 +28,7 @@ const ContactCard = ({ data, onDelete }) => {
         message: `${user.email} wants to Request the ${data.workerData.name} - ${data.workerData.email} for their ${data.workerData.category} work please respond to them`,
       }
     ).then(() => setRequested(true));
-  }, []);
+  }, [data.workerData, user.email]);
 
   return (
     <figure className="md:flex bg-slate-100 rounded-xl p-8 md:p-0 overflow-hidden">

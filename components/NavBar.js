@@ -30,14 +30,14 @@ function NavBar() {
       });
     }
     return snapArr;
-  }, []);
+  }, [user]);
 
   if (user) {
     getNotifications.then((data) => {
       setNotifications(data);
     });
   }
-  const [notifications, setNotifications] = useState();
+  const [notifications, setNotifications] = useState([]);
 
   return (
     <header className="text-gray-600 body-font">
