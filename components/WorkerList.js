@@ -26,7 +26,7 @@ const WorkerList = (props) => {
     });
   }, [onDelete, loading]);
 
-  const onDelete = async (listName, docId) => {
+  const onDelete = useCallback(async (listName, docId) => {
     setLoading(true);
     await deleteDoc(doc(db, listName, docId))
       .then(() => setLoading(false))
@@ -34,7 +34,7 @@ const WorkerList = (props) => {
         console.log(err);
         setLoading(false);
       });
-  };
+  }, []);
 
   return (
     <>
@@ -51,7 +51,7 @@ const WorkerList = (props) => {
             );
           })
         ) : (
-          <p className="text-2xl w-full text-center">
+          <p className="w-[95vw] text-slate-500 rounded-md p-5 flex overflow-hidden text-2xl font-bold items-center justify-center">
             ❗Oops Login to see the workers list
           </p>
         )
