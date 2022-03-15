@@ -1,41 +1,41 @@
-import React, { useState, useCallback } from "react";
-import { getAuth } from "firebase/auth";
-import { collection, getDocs, query, where } from "firebase/firestore";
+// import React, { useState, useCallback } from "react";
+// import { getAuth } from "firebase/auth";
+// import { collection, getDocs, query, where } from "firebase/firestore";
 import Image from "next/image";
-import FormAdd from "./FormAdd";
-import { db } from "../firebaseConfig";
+// import FormAdd from "./FormAdd";
+// import { db } from "../firebaseConfig";
 
 const ItemPage = (props) => {
-  const [panelOpen, setPanelOpen] = useState(false);
-  const isPanelOpen = () => {
-    setPanelOpen(!panelOpen);
-  };
+  // const [panelOpen, setPanelOpen] = useState(false);
+  // const isPanelOpen = () => {
+  //   setPanelOpen(!panelOpen);
+  // };
 
-  const auth = getAuth();
-  const user = auth.currentUser;
+  // const auth = getAuth();
+  // const user = auth.currentUser;
 
-  const getUserAuth = useCallback(async (uid) => {
-    const usersRef = collection(db, "users");
-    const q = query(usersRef, where("uid", "==", uid));
-    const querySnapshot = await getDocs(q);
-    let user;
-    querySnapshot.forEach((doc) => {
-      if (doc.data().constructor === true) {
-        user = true;
-      }
-    });
-    return user;
-  }, []);
+  // const getUserAuth = useCallback(async (uid) => {
+  //   const usersRef = collection(db, "users");
+  //   const q = query(usersRef, where("uid", "==", uid));
+  //   const querySnapshot = await getDocs(q);
+  //   let user;
+  //   querySnapshot.forEach((doc) => {
+  //     if (doc.data().constructor === true) {
+  //       user = true;
+  //     }
+  //   });
+  //   return user;
+  // }, []);
 
-  const [userInfo, setUserInfo] = useState();
-  if (user) {
-    getUserAuth(user.uid).then((val) => setUserInfo(val));
-  }
+  // const [userInfo, setUserInfo] = useState();
+  // if (user) {
+  //   getUserAuth(user.uid).then((val) => setUserInfo(val));
+  // }
 
   return (
     <>
-      <div className="relative">
-        {panelOpen && <FormAdd isPanelOpen={isPanelOpen} />}
+      <div className="relative mb-24">
+        {/* {panelOpen && <FormAdd isPanelOpen={isPanelOpen} />} */}
 
         {/* real page content from here on */}
         <div className="relative w-[99vw] h-[30vh] mb-10 rounded overflow-hidden">
@@ -53,7 +53,7 @@ const ItemPage = (props) => {
           </h1>
           <p className="leading-relaxed w-2/3">{props.desc}</p>
         </div>
-        <div className="flex items-center justify-center mb-16 ">
+        {/* <div className="flex items-center justify-center mb-16 ">
           {userInfo && (
             <button
               onClick={isPanelOpen}
@@ -62,7 +62,7 @@ const ItemPage = (props) => {
               Add Workers
             </button>
           )}
-        </div>
+        </div> */}
       </div>
     </>
   );

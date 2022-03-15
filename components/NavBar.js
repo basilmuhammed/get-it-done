@@ -14,7 +14,6 @@ function NavBar() {
     signOut(auth)
       .then(() => {
         // Sign-out successful.
-        console.log("🚀 ~ log-out successful.");
       })
       .catch((error) => {
         // An error happened.
