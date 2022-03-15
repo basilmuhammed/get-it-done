@@ -24,7 +24,7 @@ const WorkerList = (props) => {
       });
       setWorkers(workerDataArray);
     });
-  }, [onDelete, loading]);
+  }, [loading]);
 
   const onDelete = useCallback(async (listName, docId) => {
     setLoading(true);
