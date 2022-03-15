@@ -11,9 +11,6 @@ const ContactCard = ({ data, onDelete }) => {
   const auth = getAuth();
   const user = auth.currentUser;
 
-  // const onDelete = useCallback(async () => {
-  //   await deleteDoc(doc(db, data.workerData.category, data.docId));
-  // }, [db]);
   const onDeleteClick = useCallback(async () => {
     onDelete(data.workerData.category, data.docId);
   }, [db]);

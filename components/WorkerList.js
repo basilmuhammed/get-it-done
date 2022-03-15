@@ -17,24 +17,33 @@ const WorkerList = (props) => {
       const workerDataArray = [];
       val.forEach((doc) => {
         const workerData = { workerData: doc.data(), docId: doc.id };
-        // setWorkers((prev) => {
-        //   return [...prev, workerData];
-        // });
         workerDataArray.push(workerData);
       });
       setWorkers(workerDataArray);
     });
-  }, [loading]);
+  }, [props.listName, workers]);
 
-  const onDelete = useCallback(async (listName, docId) => {
+  const onDelete = async (listName, docId) => {
     setLoading(true);
     await deleteDoc(doc(db, listName, docId))
-      .then(() => setLoading(false))
+      .then(() => {
+        setLoading(false);
+        setWorkers([]);
+      })
       .catch((err) => {
         console.log(err);
         setLoading(false);
       });
-  }, []);
+  };
+  // const onDelete = useCallback(async (listName, docId) => {
+  //   setLoading(true);
+  //   await deleteDoc(doc(db, listName, docId))
+  //     .then(() => setLoading(false))
+  //     .catch((err) => {
+  //       console.log(err);
+  //       setLoading(false);
+  //     });
+  // }, []);
 
   return (
     <>
