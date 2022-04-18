@@ -162,7 +162,7 @@ const FormAdd = ({ isPanelOpen }) => {
               className="mt-1 px-3 py-5 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
             />
           </label>
-          <label className="block py-2">
+          {/* <label className="block py-2">
             <span className="block text-sm font-medium text-slate-700">
               upload photo
             </span>
@@ -177,7 +177,7 @@ const FormAdd = ({ isPanelOpen }) => {
               accept="image/*"
               className="p2 mt-2 bg-white "
             />
-          </label>
+          </label> */}
           <button
             type="submit"
             className="inline-flex text-black bg-yellow-400 border-0 py-1 mt-6 px-5 focus:outline-none hover:bg-gray-200 rounded text-md font-medium mr-5"

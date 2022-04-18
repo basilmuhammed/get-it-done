@@ -20,23 +20,23 @@ function NavBar() {
       });
   };
 
-  const getNotifications = useMemo(async () => {
-    const snapArr = [];
-    const dbRef = ref(getDatabase());
-    const snap = await get(child(dbRef, `notification/${user && user.uid}`));
-    if (snap.exists()) {
-      snap.forEach((data) => {
-        snapArr.push(data.val());
-      });
-    }
-    return snapArr;
-  }, [user]);
+  // const getNotifications = useMemo(async () => {
+  //   const snapArr = [];
+  //   const dbRef = ref(getDatabase());
+  //   const snap = await get(child(dbRef, `notification/${user && user.uid}`));
+  //   if (snap.exists()) {
+  //     snap.forEach((data) => {
+  //       snapArr.push(data.val());
+  //     });
+  //   }
+  //   return snapArr;
+  // }, [user]);
 
-  if (user) {
-    getNotifications.then((data) => {
-      setNotifications(data);
-    });
-  }
+  // if (user) {
+  //   getNotifications.then((data) => {
+  //     setNotifications(data);
+  //   });
+  // }
   const [notifications, setNotifications] = useState([]);
 
   return (

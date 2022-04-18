@@ -13,6 +13,7 @@ const firebaseConfig = {
   storageBucket: "get-it-done-e4742.appspot.com",
   messagingSenderId: "55303390259",
   appId: "1:55303390259:web:42787660ba6754201b4f46",
+  measurementId: "G-DSPK55MPTZ",
 };
 
 // Initialize Firebase
