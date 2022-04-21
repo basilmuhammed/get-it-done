@@ -75,12 +75,16 @@ const ContactCard = ({ data, onDelete }) => {
               Requested
             </button>
           ) : (
-            <button
-              className="p-2 border-2 rounded-md text-white text-xs flex-end bg-slate-800 "
-              onClick={onRequestService}
+            <a
+              href={`mailto:${data.workerData.email}?subject=Service request&body=The ${user.email} requesting your service. kindly consider the request and please respond back`}
             >
-              Request for Service
-            </button>
+              <button
+                className="p-2 border-2 rounded-md text-white text-xs flex-end bg-slate-800 "
+                // onClick={onRequestService}
+              >
+                Request for Service
+              </button>
+            </a>
           )}
           {user && user.email == data.workerData.addedBy && (
             <button
